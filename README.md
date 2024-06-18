@@ -26,7 +26,7 @@ Component versions:
 
 ## Labs
 
-This tutorial requires four (4) ARM64 based virtual or physical machines connected to the same network. While ARM64 based machines are used for the tutorial, the lessons learned can be applied to other platforms.
+This tutorial requires a machine running a recent Ubuntu release, with at least 12 GB of memory and 80 GB free disk space, to provision LXD Virtual Machines in. While LXD based VMs are used for the tutorial, the lessons learned can be applied to other platforms.
 
 * [Prerequisites](docs/01-prerequisites.md)
 * [Setting up the Jumpbox](docs/02-jumpbox.md)
