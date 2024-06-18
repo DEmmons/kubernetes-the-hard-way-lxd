@@ -26,7 +26,7 @@ lxc profile create kthw-jumpbox
 lxc profile edit kthw-jumpbox
 ```
 
-Delete the profile entries after 'Name:' (Name cannot be edited, but it's already correct) and insert the following text:
+Delete the profile entries after 'name:' ('name' cannot be edited, but it's already correct) and insert the following text:
 ```text
 description: Kubernetes The Hard Way jumpbox profile
 config:
@@ -58,7 +58,7 @@ lxc profile create kthw-node
 lxc profile edit kthw-node
 ```
 
-Delete the profile entries after 'Name:' and add this:
+Delete the profile entries after 'name:' and add this:
 ```text
 description: Kubernetes The Hard Way node profile
 config:
@@ -92,13 +92,13 @@ lxc launch images:debian/12 --profile kthw-node kthw-node-0 --vm
 lxc launch images:debian/12 --profile kthw-node kthw-node-1 --vm
 ```
 
-Once you have all four machine provisioned, verify they have the correct system requirements and resource allocations by running `lxc list` with the following parameters:
+Once you have all four machines provisioned, verify they have the correct system requirements and resource allocations by running `lxc list` with the following parameters:
 
 ```bash 
 lxc list kthw- -c nsP,limits.cpu,limits.memory,devices:root.size
 ```
 
-After running the above command you should see the following output:
+After running the above command, you should see the following output:
 
 ```text
 +----------------+---------+--------------+------------+---------------+-----------+
