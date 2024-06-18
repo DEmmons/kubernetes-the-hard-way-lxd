@@ -54,11 +54,11 @@ devices:
 
 Now, create the kthw-node profile the other three machines will use:
 ```bash
-lxc profile create kthw-jumpbox
-lxc profile edit kthw-jumpbox
+lxc profile create kthw-node
+lxc profile edit kthw-node
 ```
 
-Delete the profile entries after 'Name:'and add this:
+Delete the profile entries after 'Name:' and add this:
 ```text
 description: Kubernetes The Hard Way node profile
 config:
