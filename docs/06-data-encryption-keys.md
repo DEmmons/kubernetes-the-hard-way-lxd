@@ -14,10 +14,10 @@ export ENCRYPTION_KEY=$(head -c 32 /dev/urandom | base64)
 
 ## The Encryption Config File
 
-Create the `encryption-config.yaml` encryption config file:
+Create the `encryption-config.yaml` encryption config file from a template:
 
 ```bash
-envsubst < configs/encryption-config.yaml \
+envsubst < configs/encryption-config-template.yaml \
   > encryption-config.yaml
 ```
 

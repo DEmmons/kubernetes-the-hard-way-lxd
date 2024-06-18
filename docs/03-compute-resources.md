@@ -34,10 +34,10 @@ SSH will be used to configure the machines in the cluster. Verify that you have 
 
 If `root` SSH access is enabled for each of your machines you can skip this section.
 
-By default, a new `debian` install disables SSH access for the `root` user. This is done for security reasons as the `root` user is a well known user on Linux systems, and if a weak password is used on a machine connected to the internet, well, let's just say it's only a matter of time before your machine belongs to someone else. As mention earlier, we are going to enable `root` access over SSH in order to streamline the steps in this tutorial. Security is a tradeoff, and in this case, we are optimizing for convenience. On each machine login via SSH using your user account, then switch to the `root` user using the `su` command:
+By default, a new `debian` install disables SSH access for the `root` user. This is done for security reasons as the `root` user is a well known user on Linux systems, and if a weak password is used on a machine connected to the internet, well, let's just say it's only a matter of time before your machine belongs to someone else. As mention earlier, we are going to enable `root` access over SSH in order to streamline the steps in this tutorial. Security is a tradeoff, and in this case, we are optimizing for convenience. On each machine login via the 'lxc shell' command:
 
 ```bash
-su - root
+lxc shell <VM name>
 ```
 
 Edit the `/etc/ssh/sshd_config` SSH daemon configuration file and the `PermitRootLogin` option to `yes`:
@@ -90,9 +90,9 @@ done < machines.txt
 ```
 
 ```text
-aarch64 GNU/Linux
-aarch64 GNU/Linux
-aarch64 GNU/Linux
+amd64 GNU/Linux
+amd64 GNU/Linux
+amd64 GNU/Linux
 ```
 
 ## Hostnames
@@ -201,9 +201,9 @@ done
 ```
 
 ```text
-server aarch64 GNU/Linux
-node-0 aarch64 GNU/Linux
-node-1 aarch64 GNU/Linux
+server amd64 GNU/Linux
+node-0 amd64 GNU/Linux
+node-1 amd64 GNU/Linux
 ```
 
 ## Adding DNS Entries To The Remote Machines
@@ -220,6 +220,6 @@ while read IP FQDN HOST SUBNET; do
 done < machines.txt
 ```
 
-At this point hostnames can be used when connecting to machines from your `jumpbox` machine, or any of the three machines in the Kubernetes cluster. Instead of using IP addresess you can now connect to machines using a hostname such as `server`, `node-0`, or `node-1`.
+At this point hostnames can be used when connecting via ssh to machines from your `jumpbox` machine, or any of the three machines in the Kubernetes cluster. Instead of using IP addresess you can now connect to machines using a hostname such as `server`, `node-0`, or `node-1`.
 
 Next: [Provisioning a CA and Generating TLS Certificates](04-certificate-authority.md)

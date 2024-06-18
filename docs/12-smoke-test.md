@@ -111,7 +111,7 @@ Accept-Ranges: bytes
 
 ```
 
-Switch back to the previous terminal and stop the port forwarding to the `nginx` pod:
+Switch back to the previous terminal and stop the port forwarding to the `nginx` pod with the keystroke CTL+c:
 
 ```text
 Forwarding from 127.0.0.1:8080 -> 80

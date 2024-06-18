@@ -8,7 +8,7 @@ Copy `etcd` binaries and systemd unit files to the `server` instance:
 
 ```bash
 scp \
-  downloads/etcd-v3.4.27-linux-arm64.tar.gz \
+  downloads/etcd-v3.4.27-linux-amd64.tar.gz \
   units/etcd.service \
   root@server:~/
 ```
@@ -17,6 +17,10 @@ The commands in this lab must be run on the `server` machine. Login to the `serv
 
 ```bash
 ssh root@server
+```
+While we're here, we can install a package we'll need later on:
+```bash
+apt install -y bsdextrautils
 ```
 
 ## Bootstrapping an etcd Cluster
@@ -27,8 +31,8 @@ Extract and install the `etcd` server and the `etcdctl` command line utility:
 
 ```bash
 {
-  tar -xvf etcd-v3.4.27-linux-arm64.tar.gz
-  mv etcd-v3.4.27-linux-arm64/etcd* /usr/local/bin/
+  tar -xvf etcd-v3.4.27-linux-amd64.tar.gz
+  mv etcd-v3.4.27-linux-amd64/etcd* /usr/local/bin/
 }
 ```
 

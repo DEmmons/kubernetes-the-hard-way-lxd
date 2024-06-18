@@ -1,20 +1,19 @@
 # Set Up The Jumpbox
 
-In this lab you will set up one of the four machines to be a `jumpbox`. This machine will be used to run commands in this tutorial. While a dedicated machine is being used to ensure consistency, these commands can also be run from just about any machine including your personal workstation running macOS or Linux.
+In this lab you will set up one of the four machines to be a `jumpbox`. This machine will be used to run commands in this tutorial. While a LXD virtual machine is being used to ensure consistency, these commands can also be run from just about any machine including your personal workstation running macOS or Linux.
 
 Think of the `jumpbox` as the administration machine that you will use as a home base when setting up your Kubernetes cluster from the ground up. One thing we need to do before we get started is install a few command line utilities and clone the Kubernetes The Hard Way git repository, which contains some additional configuration files that will be used to configure various Kubernetes components throughout this tutorial. 
 
-Log in to the `jumpbox`:
-
+Log in to the `jumpbox` ('lxc shell' is used for convenience as we will set up ssh later):
 ```bash
-ssh root@jumpbox
+lxc shell kthw-jumpbox
 ```
 
 All commands will be run as the `root` user. This is being done for the sake of convenience, and will help reduce the number of commands required to set everything up.
 
 ### Install Command Line Utilities
 
-Now that you are logged into the `jumpbox` machine as the `root` user, you will install the command line utilities that will be used to preform various tasks throughout the tutorial. 
+Now that you are logged into the `jumpbox` machine as the `root` user, you will install the command line utilities that will be used to perform various tasks throughout the tutorial. 
 
 ```bash
 apt-get -y install wget curl vim openssl git
@@ -26,13 +25,13 @@ Now it's time to download a copy of this tutorial which contains the configurati
 
 ```bash
 git clone --depth 1 \
-  https://github.com/kelseyhightower/kubernetes-the-hard-way.git
+  https://github.com/DEmmons/kubernetes-the-hard-way-lxd.git
 ```
 
-Change into the `kubernetes-the-hard-way` directory:
+Change into the `kubernetes-the-hard-way-lxd` directory:
 
 ```bash
-cd kubernetes-the-hard-way
+cd kubernetes-the-hard-way-lxd
 ```
 
 This will be the working directory for the rest of the tutorial. If you ever get lost run the `pwd` command to verify you are in the right directory when running commands on the `jumpbox`:
@@ -42,14 +41,14 @@ pwd
 ```
 
 ```text
-/root/kubernetes-the-hard-way
+/root/kubernetes-the-hard-way-lxd
 ```
 
 ### Download Binaries
 
 In this section you will download the binaries for the various Kubernetes components. The binaries will be stored in the `downloads` directory on the `jumpbox`, which will reduce the amount of internet bandwidth required to complete this tutorial as we avoid downloading the binaries multiple times for each machine in our Kubernetes cluster.
 
-From the `kubernetes-the-hard-way` directory create a `downloads` directory using the `mkdir` command:
+From the `kubernetes-the-hard-way-lxd` directory create a `downloads` directory using the `mkdir` command:
 
 ```bash
 mkdir downloads
@@ -79,17 +78,17 @@ ls -loh downloads
 
 ```text
 total 584M
--rw-r--r-- 1 root  41M May  9 13:35 cni-plugins-linux-arm64-v1.3.0.tgz
--rw-r--r-- 1 root  34M Oct 26 15:21 containerd-1.7.8-linux-arm64.tar.gz
--rw-r--r-- 1 root  22M Aug 14 00:19 crictl-v1.28.0-linux-arm.tar.gz
--rw-r--r-- 1 root  15M Jul 11 02:30 etcd-v3.4.27-linux-arm64.tar.gz
+-rw-r--r-- 1 root  41M May  9 13:35 cni-plugins-linux-amd64-v1.3.0.tgz
+-rw-r--r-- 1 root  34M Oct 26 15:21 containerd-1.7.8-linux-amd64.tar.gz
+-rw-r--r-- 1 root  22M Aug 14 00:19 crictl-v1.28.0-linux-amd64.tar.gz
+-rw-r--r-- 1 root  15M Jul 11 02:30 etcd-v3.4.27-linux-amd64.tar.gz
 -rw-r--r-- 1 root 111M Oct 18 07:34 kube-apiserver
 -rw-r--r-- 1 root 107M Oct 18 07:34 kube-controller-manager
 -rw-r--r-- 1 root  51M Oct 18 07:34 kube-proxy
 -rw-r--r-- 1 root  52M Oct 18 07:34 kube-scheduler
 -rw-r--r-- 1 root  46M Oct 18 07:34 kubectl
 -rw-r--r-- 1 root 101M Oct 18 07:34 kubelet
--rw-r--r-- 1 root 9.6M Aug 10 18:57 runc.arm64
+-rw-r--r-- 1 root 9.6M Aug 10 18:57 runc.amd64
 ```
 
 ### Install kubectl

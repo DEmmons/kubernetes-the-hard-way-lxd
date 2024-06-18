@@ -8,7 +8,7 @@ In this lab you will generate a kubeconfig file for the `kubectl` command line u
 
 Each kubeconfig requires a Kubernetes API Server to connect to.
 
-You should be able to ping `server.kubernetes.local` based on the `/etc/hosts` DNS entry from a previous lap.
+You should be able to ping `server.kubernetes.local` based on the `/etc/hosts` DNS entry from a previous lab.
 
 ```bash
 curl -k --cacert ca.crt \
@@ -25,7 +25,7 @@ curl -k --cacert ca.crt \
   "buildDate": "2023-10-18T11:33:18Z",
   "goVersion": "go1.20.10",
   "compiler": "gc",
-  "platform": "linux/arm64"
+  "platform": "linux/amd64"
 }
 ```
 
